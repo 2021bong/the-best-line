@@ -1,6 +1,7 @@
-"use client"
+'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Home() {
   return (
@@ -17,8 +18,10 @@ export default function Home() {
       <p className='text_center mb20'>
         오늘은 내가 소설가 ! <br /> 릴레이 소설 쓰기에 참여해보세요.
       </p>
-      <button className='button'>참여하러가기</button>
-      
+      <Link href='/infomation'>
+        <button className='button'>참여하러가기</button>
+      </Link>
+
       <style jsx>{`
         .main {
           display: flex;
@@ -66,7 +69,6 @@ export default function Home() {
 
         @media (prefers-color-scheme: dark) {
         }
-
       `}</style>
     </main>
   );
