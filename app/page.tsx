@@ -1,6 +1,6 @@
 import Image from 'next/image';
-import Link from 'next/link';
 import styles from './page.module.scss';
+import LinkButton from './linkButton';
 
 export default function Home() {
   const writingRules = [
@@ -11,6 +11,7 @@ export default function Home() {
     '작성 완료된 내용은 수정할 수 없다.',
     '마음에 드는 문장에 좋아요를 눌러 투표할 수 있다.',
   ];
+
   return (
     <main className={styles.main}>
       <Image
@@ -41,7 +42,7 @@ export default function Home() {
             ))}
           </ol>
         </div>
-        <button className={styles.button}>참여하러 가기</button>
+        <LinkButton url='/write' text='참여하러 가기' />
       </div>
     </main>
   );
