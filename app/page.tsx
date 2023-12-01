@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styles from './page.module.scss';
-import LinkButton from './linkButton';
+import Link from 'next/link';
 
 export default function Home() {
   const writingRules = [
@@ -42,7 +42,9 @@ export default function Home() {
             ))}
           </ol>
         </div>
-        <LinkButton url='/write' text='참여하러 가기' />
+        <Link href='/write'>
+          <button className={styles.button}>참여하러 가기</button>
+        </Link>
       </div>
     </main>
   );
