@@ -46,3 +46,18 @@ p {
 .text_center {
   text-align: center;
 }
+
+.nav_bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  max-width: 395px;
+  margin: 20px auto;
+  border: 1px solid #000;
+  border-radius: 20px;
+}
+
+.nav_bar li a {
+  display: block;
+  padding: 10px 30px;
+}
