@@ -1,3 +1,28 @@
+import Link from 'next/link';
+import styles from './page.module.scss';
+
 export default function Progress() {
-  return <h1>Progress</h1>;
+  const lines = [
+    '"뭘 하고 계시는 거예요?"',
+    '"술 마시지."',
+    '"술은 왜 마셔요?"',
+    '"잊으려고"',
+    '"뭘 잊어요?"',
+  ];
+
+  return (
+    <div className={styles.container}>
+      <div>
+        <p className={styles.content_box}>...</p>
+        {lines.map((line) => (
+          <p key={line} className={styles.content_box}>
+            {line}
+          </p>
+        ))}
+      </div>
+      <Link href='/login'>
+        <button className={styles.button}>로그인하고 작성하기</button>
+      </Link>
+    </div>
+  );
 }
