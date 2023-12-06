@@ -3,7 +3,7 @@ import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import styles from './page.module.scss';
-import app from '@/util/initializeFirebase';
+import app from '@/src/util/initializeFirebase';
 
 export default function Login() {
   const [email, setEmail] = useState('');
@@ -15,8 +15,13 @@ export default function Login() {
     if (email && password) {
       signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          console.log('success : ', userCredential);
+          auth.currentUser
+            ?.getIdToken()
+            .then((token) => sessionStorage.setItem('accessToken', token));
           const user = userCredential.user;
+          sessionStorage.setItem('uid', user.uid);
+          sessionStorage.setItem('name', user.displayName || '');
+          sessionStorage.setItem('refreshToken', user.refreshToken);
           router.push('/write');
         })
         .catch((error) => {
@@ -57,6 +62,9 @@ export default function Login() {
           </button>
           <button onClick={moveSignup} className={styles.button}>
             회원가입
+          </button>
+          <button className={styles.button} onClick={() => router.push('/')}>
+            취소
           </button>
         </div>
       </form>

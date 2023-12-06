@@ -5,23 +5,33 @@ import { useRouter } from 'next/navigation';
 import axios from 'axios';
 
 export default function Write() {
+  const token = sessionStorage.getItem('accessToken');
   const router = useRouter();
   const [content, setContent] = useState('');
   const handleWriteContent = (e: ChangeEvent) => {
+    if (!token) return;
     const target = e.target as HTMLInputElement;
     setContent(target.value);
   };
-  const handleSendMessage = () => {
-    if (content) {
-      alert(content); // test code
-      axios
-        .post('/server/write', { text: content })
-        .then((res) => {
-          router.push('/write/complete');
-        })
-        .catch((err) => alert('작성에 실패하였습니다.'));
+  const handleBtnAction = () => {
+    if (token) {
+      // If I had token, send message
+      if (content) {
+        alert(content); // test code
+        axios
+          .post('/server/write', { text: content })
+          .then((res) => {
+            router.push('/write/complete');
+          })
+          .catch((err) =>
+            alert('작성에 실패하였습니다. 잠시 후 다시 시도해주세요.')
+          );
+      } else {
+        alert('내용을 작성해주세요!');
+      }
     } else {
-      alert('내용을 작성해주세요!');
+      // If I had not token, go to login
+      router.push('/login');
     }
   };
   const lines = [
@@ -49,16 +59,20 @@ export default function Write() {
           className={styles.input}
           name='content'
           id='input'
-          placeholder='여기에 내용이 이어지도록 작성해보세요.'
+          placeholder={
+            token
+              ? '여기에 내용이 이어지도록 작성해보세요.'
+              : '먼저 로그인을 해주세요.'
+          }
           value={content}
           onChange={handleWriteContent}
         ></input>
         <button
           type='submit'
           className={styles.button}
-          onClick={handleSendMessage}
+          onClick={handleBtnAction}
         >
-          작성 완료
+          {token ? '작성 완료' : ' 로그인하기'}
         </button>
       </form>
     </div>

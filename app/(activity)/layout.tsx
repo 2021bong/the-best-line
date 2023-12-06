@@ -23,17 +23,15 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     },
   ];
   return (
-    <html lang='ko'>
-      <body>
-        <nav className='nav_bar'>
-          {navContent.map((nav) => (
-            <li key={nav.url} title={nav.text}>
-              <Link href={nav.url}>{nav.text}</Link>
-            </li>
-          ))}
-        </nav>
-        {children}
-      </body>
-    </html>
+    <>
+      <nav className='nav_bar'>
+        {navContent.map((nav) => (
+          <li key={nav.url} title={nav.text}>
+            <Link href={nav.url}>{nav.text}</Link>
+          </li>
+        ))}
+      </nav>
+      {children}
+    </>
   );
 }

@@ -6,9 +6,11 @@ import {
 } from 'firebase/auth';
 import styles from './page.module.scss';
 import { useState } from 'react';
-import app from '@/util/initializeFirebase';
+import app from '@/src/util/initializeFirebase';
+import { useRouter } from 'next/navigation';
 
 export default function Login() {
+  const router = useRouter();
   const [email, setEmail] = useState('');
   const [nickname, setNickname] = useState('');
   const [password, setPassword] = useState('');
@@ -76,6 +78,9 @@ export default function Login() {
         </p>
         <button onClick={onSignup} className={styles.button}>
           가입 완료
+        </button>
+        <button className={styles.button} onClick={() => router.push('/login')}>
+          취소
         </button>
       </form>
     </div>
