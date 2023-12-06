@@ -61,3 +61,11 @@ p {
   display: block;
   padding: 10px 30px;
 }
+
+.rules_box {
+  display: flex;
+  flex-direction: column;
+  padding: 25px 15px;
+  border-radius: 15px;
+  background-color: #eee;
+}
