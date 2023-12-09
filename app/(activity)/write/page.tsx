@@ -9,7 +9,6 @@ export default function Write() {
   const router = useRouter();
   const [content, setContent] = useState('');
   const handleWriteContent = (e: ChangeEvent) => {
-    if (!token) return;
     const target = e.target as HTMLInputElement;
     setContent(target.value);
   };
@@ -66,6 +65,7 @@ export default function Write() {
           }
           value={content}
           onChange={handleWriteContent}
+          disabled={!token}
         ></input>
         <button
           type='submit'

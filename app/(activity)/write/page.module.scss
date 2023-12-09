@@ -30,13 +30,21 @@
     flex-direction: column;
     justify-content: center;
 
-    input {
+    .input {
       width: 300px;
       max-width: 395px;
       margin-bottom: 10px;
       padding: 10px;
       border: 1px solid #000;
       border-radius: 10px;
+
+      &:disabled {
+        background-color: #ccc;
+      }
+    }
+
+    .input:disabled::placeholder {
+      color: #000;
     }
 
     .button {
